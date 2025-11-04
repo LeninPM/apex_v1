@@ -284,12 +284,20 @@
                 </div>
               </div>
 
-              <form name="contact" method="POST" data-netlify="true" id="cvForm" enctype="multipart/form-data" netlify-honeypot="bot-field">
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                id="cvForm"
+                enctype="multipart/form-data"
+                netlify-honeypot="bot-field"
+              >
                 <input type="hidden" name="form-name" value="contact" />
                 <p style="display: none">
                   <label
                     >No llenar este campo si eres humano:
-                    <input name="bot-field"/></label>
+                    <input name="bot-field"
+                  /></label>
                 </p>
                 <div class="form-step active" id="step1">
                   <h4 class="mb-4 text-primary">Datos Personales</h4>
@@ -1032,6 +1040,17 @@
         </div>
       </div>
     </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a
+      href="https://wa.me/51991057926?text=Hola%2C%20quisiera%20más%20información%20sobre%20los%20servicios%20de%20APEX."
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contáctanos por WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
