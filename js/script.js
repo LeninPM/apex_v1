@@ -4,10 +4,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Inicialización de todas las funcionalidades
   initSmoothScrolling();
-  initForm();
+  initForm(); // Esta función ahora contiene la lógica de envío
   initScrollAnimations();
   initNavbarBehavior();
-  initPricingButtons();
+  // initPricingButtons(); // Esta función no estaba en tu script.js, la quito por si acaso.
 });
 
 /**
@@ -46,12 +46,17 @@ function initSmoothScrolling() {
 function initForm() {
   const cvForm = document.getElementById("cvForm");
   if (cvForm) {
+    // Escuchamos el evento 'submit'
     cvForm.addEventListener("submit", (e) => {
-  if (!validateCurrentStep()) {
-    e.preventDefault(); // Solo previene si la validación falla
-  }
-});
-
+      // SIEMPRE prevenimos el envío por defecto para manejarlo con AJAX
+      e.preventDefault(); 
+      
+      // Validamos el paso actual
+      if (validateCurrentStep()) {
+        // Si es válido, llamamos a nuestra función de envío
+        handleFormSubmission();
+      }
+    });
   }
 
   // Validación en tiempo real para el DNI (solo 8 dígitos numéricos)
@@ -73,6 +78,7 @@ function initForm() {
     });
   }
 }
+
 
 /**
  * Cambia el fondo del navbar al hacer scroll
@@ -238,58 +244,48 @@ function updateProgressLine() {
 
 
 /**
- * Simula el envío del formulario y resetea la interfaz
+ * Envía el formulario a Netlify usando AJAX (Fetch)
  */
 function handleFormSubmission() {
     const cvForm = document.getElementById("cvForm");
     const submitBtn = cvForm.querySelector('button[type="submit"]');
+    // FormData tomará todos los campos del formulario, incluyendo el archivo
     const formData = new FormData(cvForm);
 
     // Muestra un estado de carga en el botón
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
     
-    // --- IMPORTANTE: SIMULACIÓN DE ENVÍO ---
-    // En una aplicación real, aquí es donde harías la llamada a tu backend
-    // para procesar los datos, por ejemplo, usando fetch().
-    
-    /* Ejemplo de cómo sería con fetch:
-    fetch('URL_DE_TU_API', {
-        method: 'POST',
+    // --- Envío real a Netlify ---
+    // Netlify detecta envíos AJAX si se hacen a la misma URL (en este caso "/")
+    // y con el método POST.
+    fetch("/", {
+        method: "POST",
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Éxito:', data);
-        showAlert("¡Registro completado exitosamente!", "success");
+    .then(response => {
+        if (response.ok) {
+            // Éxito en el envío
+            showAlert("¡Registro completado exitosamente! Nos pondremos en contacto contigo pronto.", "success");
+            cvForm.reset();     // Limpia el formulario
+            updateStep(1);      // Vuelve al primer paso
+        } else {
+            // Error en el servidor
+            throw new Error('Hubo un problema con el servidor de Netlify.');
+        }
     })
     .catch(error => {
+        // Error de red o en la lógica
         console.error('Error:', error);
-        showAlert("Hubo un error al enviar tu información.", "danger");
+        showAlert("Hubo un error al enviar tu información. Por favor, inténtalo de nuevo.", "danger");
     })
     .finally(() => {
-        // Resetea el botón sin importar el resultado
+        // Restaura el botón sin importar el resultado
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar CV para Mejora';
     });
-    */
-
-    // Usamos setTimeout para simular la espera de la red
-    console.log("Datos del formulario a enviar:", Object.fromEntries(formData));
-
-    setTimeout(() => {
-        // Restaura el botón
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar CV para Mejora';
-
-        showAlert("¡Registro completado exitosamente! Nos pondremos en contacto contigo pronto.", "success");
-        
-        // Resetea el formulario y vuelve al primer paso
-        cvForm.reset();
-        updateStep(1);
-
-    }, 2000);
 }
+
 
 /**
  * Muestra una alerta de Bootstrap en la parte superior de la página
@@ -297,19 +293,33 @@ function handleFormSubmission() {
  * @param {string} type - El tipo de alerta (e.g., 'success', 'danger', 'warning')
  */
 function showAlert(message, type = "success") {
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = `
-        <div class="alert alert-${type} alert-dismissible fade show" role="alert" style="position: fixed; top: 80px; left: 50%; transform: translateX(-50%); z-index: 1050;">
+    // Crea un contenedor para la alerta
+    const alertWrapper = document.createElement("div");
+    alertWrapper.style.position = "fixed";
+    alertWrapper.style.top = "80px";
+    alertWrapper.style.left = "50%";
+    alertWrapper.style.transform = "translateX(-50%)";
+    alertWrapper.style.zIndex = "1050";
+    alertWrapper.style.minWidth = "300px";
+    alertWrapper.style.maxWidth = "90%";
+
+    alertWrapper.innerHTML = `
+        <div class="alert alert-${type} alert-dismissible fade show" role="alert">
             ${message}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     `;
-    document.body.append(wrapper);
+    
+    document.body.append(alertWrapper);
 
     // Elimina la alerta después de 5 segundos
     setTimeout(() => {
-        wrapper.remove();
+      // Asegúrate de que la alerta todavía existe antes de intentar cerrarla
+      const alertInstance = bootstrap.Alert.getOrCreateInstance(alertWrapper.querySelector('.alert'));
+      if (alertInstance) {
+          alertInstance.close();
+      }
+      // Elimina el wrapper después de que se complete la transición de cierre
+      setTimeout(() => alertWrapper.remove(), 500);
     }, 5000);
 }
-
-
