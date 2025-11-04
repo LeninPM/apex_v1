@@ -1,0 +1,509 @@
+/* Custom CSS for Apex Website */
+
+:root {
+  --primary-color: #161654;
+  --primary-light: #8fbfda;
+  --primary-dark: #0f0f3d;
+  --secondary-color: #64748b;
+  --accent-color: #f8fafc;
+  --text-dark: #1e293b;
+  --text-light: #64748b;
+  --success-color: #10b981;
+  --border-color: #e2e8f0;
+  --light-bg: #f1f7fb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  padding-top: 76px;
+}
+
+/* Navigation */
+.navbar {
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary-color) !important;
+}
+/* Navigation */
+.navbar-logo {
+  height: 40px; /* Ajusta este valor según el tamaño que prefieras */
+  width: auto;  /* Esto asegura que la imagen mantenga sus proporciones */
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #f1f7fb 0%, #e0eafc 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e2e8f0" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.5;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-image {
+  position: relative;
+  z-index: 2;
+}
+
+/* Estilo para la nueva imagen del CV */
+.cv-mockup {
+  border-radius: 15px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 8px solid white;
+  max-width: 400px;
+  transform: rotate(3deg);
+  transition: all 0.3s ease;
+}
+
+.cv-mockup:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+
+/* Service Cards */
+.service-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.service-icon i {
+  font-size: 1.8rem;
+  color: white;
+}
+
+.service-card h4 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.service-card ul li {
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+/* Process Steps */
+.process-step {
+  position: relative;
+  padding: 1rem;
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 auto 1rem;
+}
+
+.process-step h5 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+/* Contact Form */
+.contact-form {
+  background: white;
+  padding: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(22, 22, 84, 0.1);
+  border: 1px solid var(--border-color);
+}
+
+.form-control,
+.form-select {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(22, 22, 84, 0.25);
+}
+
+.form-label {
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-dark), #0a0a2e);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(22, 22, 84, 0.4);
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+  /* La clase bg-dark de Bootstrap ya establece el color de fondo */
+  line-height: 1.7; /* Mejora la legibilidad */
+}
+
+/* Estilo para los títulos de cada columna del footer */
+footer h6 {
+  font-weight: 600;
+  color: white; /* Asegura que los títulos sean blancos y no hereden otro color */
+}
+
+/* Estilo para los enlaces del footer usando la nueva clase */
+.footer-link {
+  color: rgba(255, 255, 255, 0.7); /* Un blanco semitransparente para los enlaces */
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+  color: white; /* El enlace se vuelve blanco opaco al pasar el mouse */
+  text-decoration: underline;
+}
+
+/* Mejora la visibilidad de la línea horizontal */
+footer hr {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Estilos para los íconos de redes sociales */
+.social-links a {
+  font-size: 1.3rem; /* Aumenta ligeramente el tamaño */
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--primary-light) !important;
+  transform: translateY(-2px); /* Efecto sutil al pasar el mouse */
+}
+
+/* About Us Section */
+.team-illustration-img {
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Advisory Section */
+.advisory-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.advisory-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.advisory-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.advisory-icon i {
+  font-size: 1.8rem;
+  color: white;
+}
+
+.advisory-card h4 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.advisory-card ul {
+  text-align: left;
+  margin-top: 1.5rem;
+}
+
+.advisory-card ul li {
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+}
+
+.cta-box {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(22, 22, 84, 0.2);
+}
+
+.cta-box h3,
+.cta-box p {
+  color: white;
+}
+
+.cta-box .btn-outline-primary {
+  border-color: white;
+  color: white;
+}
+
+.cta-box .btn-outline-primary:hover {
+  background: white;
+  color: var(--primary-color);
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+.dropdown-toggle::after {
+  margin-left: 0.5rem;
+}
+
+/* Multi-step Form Styles - CORREGIDO */
+.form-steps {
+  margin-bottom: 2.5rem;
+}
+
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.progress-bar-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0; /* Ancho inicial 0, se actualizará con JS */
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    transition: width 0.4s ease;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 2;
+  background: white;
+  padding: 0 1rem;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--border-color);
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 4px solid white;
+}
+
+.step.active .step-number {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+}
+
+.step span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.step.active span {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form enhancements */
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.form-check-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(22, 22, 84, 0.25);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 0;
+    text-align: center;
+  }
+  
+  .hero-content .d-flex {
+    justify-content: center;
+  }
+
+  .cv-mockup {
+    margin-top: 2rem;
+    transform: rotate(0deg);
+  }
+  
+  .pricing-card.featured {
+    transform: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-image {
+    margin-top: 2rem;
+  }
+
+  .display-4 { font-size: 2rem; }
+  .display-5 { font-size: 1.75rem; }
+}
+
+@media (max-width: 576px) {
+  .contact-form {
+    padding: 2rem 1rem;
+  }
+
+  .step span {
+    display: none; /* Oculta el texto en pantallas muy pequeñas */
+  }
+
+  .step {
+    padding: 0;
+  }
+}

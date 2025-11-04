@@ -1,0 +1,16 @@
+# Configuración de Netlify para el sitio estático de APEX
+
+[build]
+  # Netlify detectará automáticamente index.html como página principal
+  publish = "."
+
+[[redirects]]
+  # Redirigir todas las rutas a index.html (para SPA si es necesario en el futuro)
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Configuración del formulario
+# El formulario ya está configurado en index.html con data-netlify="true"
+# Los envíos se manejarán automáticamente por Netlify Forms
+
