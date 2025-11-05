@@ -4,10 +4,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Inicialización de todas las funcionalidades
   initSmoothScrolling();
-  initForm(); // Esta función ahora contiene la lógica de envío
+  initForm();
   initScrollAnimations();
   initNavbarBehavior();
-  // initPricingButtons(); // Esta función no estaba en tu script.js, la quito por si acaso.
 });
 
 /**

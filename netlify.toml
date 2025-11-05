@@ -3,7 +3,6 @@
 [build]
   # Netlify detectará automáticamente index.html como página principal
   publish = "."
-  functions = "netlify/functions"
 
 [[redirects]]
   # Redirigir todas las rutas a index.html (para SPA si es necesario en el futuro)

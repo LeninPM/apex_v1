@@ -82,5 +82,5 @@ Para más información sobre APEX:
 
 ---
 
-Desarrollado por **LICTECH** para **APEX**
+Desarrollado por **LICKTECH** para **APEX**
 
